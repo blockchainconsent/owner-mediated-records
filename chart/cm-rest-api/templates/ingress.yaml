@@ -1,0 +1,42 @@
+{{- if .Values.cluster.ingress.enabled }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "chart.fullname" . }}-ingress
+  namespace: {{.Release.Namespace}}
+  labels:
+{{ include "chart.labels" . | indent 4 }}
+  annotations:
+    kubernetes.io/ingress.class: "private-iks-k8s-nginx"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "{{ .Values.cluster.ingress.proxyReadTimeout }}"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "{{ .Values.cluster.ingress.proxyConnectTimeout }}"
+spec:
+  rules:
+    - host: {{ .Values.cluster.ingress.subdomain }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ template "chart.fullname" . }}-svc
+              servicePort: {{ .Values.service.externalPort }}
+            path: /
+          - backend:
+              serviceName: {{ template "chart.fullname" . }}-svc
+              servicePort: {{ .Values.service.externalPort }}
+            path: /common/api/v1/
+          - backend:
+              serviceName: {{ template "chart.fullname" . }}-svc
+              servicePort: {{ .Values.service.externalPort }}
+            path: /omr/api/v1/
+          - backend:
+              serviceName: cm-async-register-consent-service-svc
+              servicePort: {{ .Values.api.asyncRegConsApi.externalPort }}
+            path: /gateway/api/v1/
+          - backend:
+              serviceName: cm-async-register-consent-service-svc
+              servicePort: {{ .Values.api.asyncRegConsApi.externalPort }}
+            path: /async-register-consent
+  tls:
+    - hosts:
+        - {{ .Values.cluster.ingress.subdomain }}
+      secretName: {{ .Values.cluster.ingress.secretName }}
+{{- end }}

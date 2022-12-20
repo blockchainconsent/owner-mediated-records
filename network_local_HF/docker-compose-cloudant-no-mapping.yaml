@@ -1,0 +1,38 @@
+################################################################################
+# 
+# 
+# OCO Source Materials
+# 
+# (c) Copyright Merative US L.P. and others 2020-2022 
+#
+# SPDX-Licence-Identifier: Apache 2.0
+# 
+# The source code for this program is not published or otherwise
+# divested of its trade secrets, irrespective of what has been
+# deposited with the U.S. Copyright Office.
+################################################################################
+
+version: '2'
+
+services:
+
+  cloudant-developer:
+    image: ibmcom/cloudant-developer:latest
+    container_name: cloudant-developer
+    hostname: developer.local
+    ports:
+      - "9080:80"
+    network_mode: bridge
+#    networks:
+#      testing_net:
+#        ipv4_address: 10.199.1.1
+
+#volumes:
+#  cloudant-developer:
+#networks:
+#  testing_net:
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 10.199.0.0/16
+          

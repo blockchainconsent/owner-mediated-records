@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ template "chart.fullname" . }}-env-configmap
+data:
+{{- if .Values.database.username }}
+  CLOUDANT_USERNAME: {{ required "A valid .Values.database.username entry required!" .Values.database.username }}
+{{- end }}
+{{- if .Values.database.name }}
+  CLOUDANT_DATABASE: {{ required "A valid .Values.database.name entry required!" .Values.database.name }}
+{{- end }}
+{{- if .Values.database.host }}
+  CLOUDANT_HOST: {{ required "A valid .Values.database.host entry required!" .Values.database.host }}
+{{- end }}
+{{- if .Values.phiAccessLogDatabase.username }}
+  CLOUDANT_PHI_LOG_ACCOUNT: {{ required "A valid .Values.phiAccessLogDatabase.username entry required!" .Values.phiAccessLogDatabase.username }}
+{{- end }}
+{{- if .Values.phiAccessLogDatabase.name }}
+  CLOUDANT_PHI_LOG_DBNAME: {{ required "A valid .Values.phiAccessLogDatabase.name entry required!" .Values.phiAccessLogDatabase.name }}
+{{- end }}
+{{- if .Values.phiAccessLogDatabase.host }}
+  CLOUDANT_PHI_LOG_URL: {{ required "A valid .Values.phiAccessLogDatabase.host entry required!" .Values.phiAccessLogDatabase.host }}
+{{- end }}

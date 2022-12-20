@@ -1,0 +1,25 @@
+################################################################################
+# 
+# 
+# OCO Source Materials
+# 
+# Copyright IBM Corp. 2019
+# 
+# The source code for this program is not published or otherwise
+# divested of its trade secrets, irrespective of what has been
+# deposited with the U.S. Copyright Office.
+################################################################################
+
+---
+applications:
+ - name: consentmanager-fda
+   random-route: false
+   host: consentmanager-fda
+   domain: mybluemix.net
+   memory: 2G
+   env:
+     KEYVALSTORE: keyValStore
+     MYCREDS_JSON: mycredsBluemixFDA.json
+     APP_TMP_DIR: tmp
+     CLEAN_KEYVALSTORE: false
+     CLEAN_TMP: false

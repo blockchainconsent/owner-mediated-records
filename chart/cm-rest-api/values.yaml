@@ -1,0 +1,61 @@
+nameOverride: "cm-rest-api"
+fullnameOverride: "cm-rest-api"
+
+replicaCount: 2
+annotations:
+  TOOLCHAIN_ID: null
+  GIT_URL: null
+  GIT_BRANCH: null
+  GIT_COMMIT: null
+  USER_NAME: null
+  APPLICATION_VERSION: null
+config:
+  mountPath: /opt/consent-manager/server/config
+image:
+  repository : <helm-repo>
+  tag: <helm-tag>
+  pullPolicy: IfNotPresent
+  pullSecret: regsecret
+database:
+  username:
+  password:
+  name:
+  host:
+phiAccessLogDatabase:
+  username:
+  password:
+  name:
+  host:
+redis:
+  url:
+service:
+  type:
+  externalPort:
+  internalPort:
+
+cluster:
+  ingress:
+    enabled: false
+    albId:
+    subdomain:
+    externalPort:
+    externalProtocol:
+    secretName:
+    proxyReadTimeout:
+    proxyConnectTimeout:
+
+api:
+  asyncRegConsApi:
+    externalPort: 3002
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi

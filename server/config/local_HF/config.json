@@ -1,0 +1,48 @@
+{
+  "host": "localhost",
+  "port": "3000",
+  "enable_https": false,
+  "swagger_scheme": "http",
+  "swagger_host": "localhost:3000",
+  "dev_mode": true,
+  "chaincode_src_path": "./chaincodes/src",
+  "chaincode_deploy_path": "./chaincodes/deploy",
+  "channel_config": {
+    "mychannel": {
+      "config_path": "./network_local_HF/channel-artifacts/channel.tx",
+      "create_channel": true
+    }
+  },
+  "tmp_dir": "../tmp",
+  "sessionMaxAge": "1800000",
+  "channel_creation_wait_time": "5000",
+  "chaincode_upate_wait_time": "30000",
+  "instantiateProposalTimeout": "180000",
+  "eventWaitTime": "60000",
+  "transactionProposalTimeout": "60000",
+  "login_token_timeout_sec": "86400",
+  "kms_module": "kms_local.js",
+  "ums_module": "ums_ca.js",
+  "network_config_file": "./server/config/local_HF/network-config.yaml",
+  "solution_config_file": "./server/config/local_HF/solutions.yaml",
+  "key_value_store_module": "fabric-client/lib/impl/FileKeyValueStore.js",
+  "first_peer_only_for_query": false,
+  "hyperledger_fabric_version": "1.4",
+  "endorsement_policy": "AND",
+  "cookieSecure": true,
+  "proxyDepth": "6",
+  "de_identifier": {
+    "enabled": false,
+    "host": "http://localhost",
+    "port": "3001"
+  },
+  "redisService": {
+    "enabled": true,
+    "port": 6379,
+    "host": "localhost",
+    "cacheExpiration": 28800000
+  },
+  "cadfEventLogging": {
+    "enabled": true
+  }
+}

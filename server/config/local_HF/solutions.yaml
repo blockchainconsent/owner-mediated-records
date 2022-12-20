@@ -1,0 +1,69 @@
+# solutions provides a list of all solutions to be deployed to the network
+solutions:
+  owner-mediated-records:
+    rest_api_path: "/omr/api/v1"
+
+    # paths are relative to the server.js
+    solution_api_routes: "./routes/rest_api"
+    solution_request_handler: "./solution/solution_api_handler.js"
+    common_api_routes: "common-utils/routes/common_rest_api"
+    common_request_handler: "common-utils/request_handler"
+
+    verify_user_signature: false
+    disable_verify_user_signature_for_localhost: false
+    skip_verify_user_signature_if_no_key_found: true
+
+    ui_verify_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlDTOPlO+GE+RGrO0XHjGlazX3kc5lLfzfETuinjPZ2sPDQIKCLGisrcxKKPLmWApUj8CV0lOUo6huDkg5M24ELLzXwl72+JGwE1LYVkvdiVktQcjEogc5IN1iaS47FvYE6xISou4W/ZnN6oSiCnU/tpwE5B9BLyX9AUiXpInbr9LPla1QRPQFqbolLYOkDr6zhBhBaEqDMsy4/7KUFC82iHGMg9yi+zRH3vRD2mdFHHaiEpq4Wn88PrSX2mLQ0FySeZF1DxNkumgG3Z7Y0NicCqeow6jv9hbzRnUHF1oAVKVEuUjlHBbjQsQKFb+Y3iRvXIS4AtR6xQ0A0gBCtX3+QIDAQAB"
+
+    tokenSecretKey: "MySecret1"
+    tokenSecretKeyIV: "MySecret2"
+
+    # application admin
+    app_admin:
+      org: Org1
+      username: AppAdmin
+      secret: pass0
+      private_key: "MIIEowIBAAKCAQEAlDTOPlO+GE+RGrO0XHjGlazX3kc5lLfzfETuinjPZ2sPDQIKCLGisrcxKKPLmWApUj8CV0lOUo6huDkg5M24ELLzXwl72+JGwE1LYVkvdiVktQcjEogc5IN1iaS47FvYE6xISou4W/ZnN6oSiCnU/tpwE5B9BLyX9AUiXpInbr9LPla1QRPQFqbolLYOkDr6zhBhBaEqDMsy4/7KUFC82iHGMg9yi+zRH3vRD2mdFHHaiEpq4Wn88PrSX2mLQ0FySeZF1DxNkumgG3Z7Y0NicCqeow6jv9hbzRnUHF1oAVKVEuUjlHBbjQsQKFb+Y3iRvXIS4AtR6xQ0A0gBCtX3+QIDAQABAoIBAQCLD6U5fDAQ9Y+Mg3PHlJeY125RpXkU3yl6v98nVMYfHqgnp3MsxyiHEjbxEAe46S68elzC9AimlCiQCCKiLZj5KkALO4XZQs7qH1yMgjdzXxDIf2LcP5UEoYjG1yWguWjcxLmsIL+iomglJdJvqvitDN8+rENyD1dw4uRl4jNXyH7IA03kCayxa0Iyu39JLDF9UShi4xYM1kbcWBRaO1FHCZzouKdvICpe/9/Z2uqDp2PHBVeoyFKR2jhhKukBh+SKqioPl51+V+HMDjMVwDKnA7vgsMkfHrXGWAq62SW1aIKscQ63PE+/tCTeZ28mxBRbsiOap/XjYrVKasVpTjrRAoGBAMXeBCiucUaVSqR0kCSZ8IcFggxI6IJqc3ew3r+xr5zpCP4AD2GkP7u3qKW/HgBQkEOibBSVFcfGAYOk/X5GwUtVLbBg9mQDp9qkSc6M6hYfKnRoIA83RGL8n/DfjJq4YgGVgXP4w63J7XwQH116dkJT+PIwwM76Z08VUGZS8u+FAoGBAL+/sJj5IbMLSZeXU2MZwhvaXOiATxeL2BWT1nswGvNtv4FNCG3TZB+nhNdv6BR8CQZDPMpQcS91pddQHNF/kS7Z2X+KgSCod4lxS9fwFXJWPphKtQ48vF3fb1ApJUbWCbdzXacsKHnoJpSyKqRAl0GWXZ3oH33+Mt8npGbgDb7lAoGAGzoTpG1slOPSI5MOiprMKCgv3vThWaDARsYFwKb4nUTLwffMJglt46y//h6wSCbN0yC0cpiZKKYsayr23rtpua383XpaLST7ofBdX5iwVV7wfpgdYTqfpGdSsthwBpI8mi8yYvzmIDHbBelKB5jkUPgxF1JyFYkLUiyCpbHgT+kCgYBheG2qtSl+PASivFe1DojvY6bKwT5zN7EV9tqWMDPi/izU63WXbld9B8itQsN0dkCYIGGsbgu7FlDBDIY5sGD6sd6vyJYvJbPt99uX3wDn6BNVktRKcnFGPqf01ZWPVooF6Oz4Z6gDoBDMkWy/pd29h1P7St2HTEpLyXj2mnoiSQKBgGm5mv3Bg0qAP/Pf03eorbezIpy91PuUldnTbyAsT47cc+d8lpdYe6EKxVt6utJip1YQQ/yNqzINDvzXdRHeeA1OZPfJGR/dtl11nk59hoSCqUmy2YZzYIAIm9nQzVEFkHS9JtyTtIYGgidPaOWozI7Spft7RjpMwae2D9xlpf4k"
+      public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlDTOPlO+GE+RGrO0XHjGlazX3kc5lLfzfETuinjPZ2sPDQIKCLGisrcxKKPLmWApUj8CV0lOUo6huDkg5M24ELLzXwl72+JGwE1LYVkvdiVktQcjEogc5IN1iaS47FvYE6xISou4W/ZnN6oSiCnU/tpwE5B9BLyX9AUiXpInbr9LPla1QRPQFqbolLYOkDr6zhBhBaEqDMsy4/7KUFC82iHGMg9yi+zRH3vRD2mdFHHaiEpq4Wn88PrSX2mLQ0FySeZF1DxNkumgG3Z7Y0NicCqeow6jv9hbzRnUHF1oAVKVEuUjlHBbjQsQKFb+Y3iRvXIS4AtR6xQ0A0gBCtX3+QIDAQAB"
+
+    chaincode:
+      name: "owner_mediated_records"
+      version: "v0"
+      append_hash_to_version: true
+      path: "solution_chaincode"
+      type: "golang"
+      init_function: "init"
+      init_args:
+        - "_loglevel"
+        - "DEBUG"
+
+      endorsement_policy:
+        identities:
+          - role:
+              name: "member"
+              mspId: "Org1MSP"
+          - role:
+              name: "member"
+              mspId: "Org2MSP"
+        policy:
+          1-of:
+            - signed-by: 0
+            - signed-by: 1
+
+      # first arg signals which datastore should be used:
+      #   ledger_ - no datastore, store all assets on ledger
+      #   cloudant_ - default Cloudant datastore - default dev instance accessible through http://localhost:9080/dashboard.html
+      #   {custom_name} - custom datastore not provided by default
+      datastore_config:
+        connection_id: "cloudant_"
+        username: "${CLOUDANT_USERNAME}"
+        password: "${CLOUDANT_PASSWORD}"
+        database: "${CLOUDANT_DATABASE}"
+        host: "${CLOUDANT_HOST}"
+
+    channels:
+      mychannel:
+        config_path: "./network_local_HF/channel-artifacts/channel.tx"
+        install_chaincode: false
+        instantiate_chaincode: false
+        create_channel: false

@@ -1,0 +1,88 @@
+################################################################################
+# 
+# 
+# OCO Source Materials
+# 
+# (c) Copyright Merative US L.P. and others 2020-2022 
+#
+# SPDX-Licence-Identifier: Apache 2.0
+# 
+# The source code for this program is not published or otherwise
+# divested of its trade secrets, irrespective of what has been
+# deposited with the U.S. Copyright Office.
+################################################################################
+
+
+#
+# remove all container:
+# > docker rm $(docker ps -a -q)
+# remove all images:
+# > docker rmi $(docker images -q)
+# run container
+# > docker-compose -f docker-compose-ccenv.yaml up
+#
+# from other terminal: ssh into the container
+# > docker exec -it ccenv_sdk /bin/bash
+# make changes
+#
+# from another terminal: commit images
+# > docker commit ccenv_sdk hyperledger/fabric-ccenv:x86_64-1.1.0
+# save images to tar
+# > docker save 181fe2d4cdbb -o ccenv_sdk.tar
+#
+# to load images
+# > docker load -i .\ccenv_sdk.tar
+# to set proper tags
+# > docker tag 181fe2d4cdbb hyperledger/fabric-ccenv:x86_64-1.1.0
+#
+# should be something like this
+# > docker images
+# REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
+# hyperledger/fabric-ccenv   x86_64-1.1.0        181fe2d4cdbb        41 minutes ago      1.392 GB
+#
+# now run node.js and make sure that it uses the local fabric-ccenv image
+# remove all container:
+# > docker rm $(docker ps -a -q)
+# remove all images:
+# > docker rmi $(docker images -q)
+# run container
+# > docker-compose -f docker-compose.yaml up
+#
+# run node server.js 
+
+
+
+
+version: '2'
+
+services:
+
+  ccenv_sdk:
+    image: hyperledger/fabric-ccenv:1.4
+    environment:
+      - CORE_VM_ENDPOINT=$DOCKER_ENDPOINT
+      # the following setting starts chaincode containers on the same
+      # bridge network as the peers
+      # https://docs.docker.com/compose/networking/
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_default
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      # The following setting skips the gossip handshake since we are
+      # are not doing mutual TLS
+      - CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_CHAINCODE_LOGGING_LEVEL=debug
+      - CORE_CHAINCODE_LOGGING_SHIM=debug
+    ports:
+      - 7051:7051
+      - 7053:7053
+      - 7054:7054
+    command: sh -c 'sleep infinity'
+    #volumes:
+    #  - ../../../src/solution_chaincode/vendor/common:/opt/gopath/src/common
+    container_name: ccenv_sdk

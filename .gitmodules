@@ -1,0 +1,6 @@
+[submodule "common"]
+	path = chaincodes/src/solution_chaincode/vendor/common
+	url = https://github.com/blockchain-hcls/common.git
+[submodule "common-utils"]
+	path = common/utils
+	url = https://github.com/blockchain-hcls/utils.git

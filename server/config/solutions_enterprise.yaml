@@ -1,0 +1,47 @@
+---
+#
+# Solutions prvides list of all solutions to be deployed to the network
+#
+
+
+solutions:
+
+      owner-mediated-records:
+
+          rest_api_path: "/omr/api/v1"
+
+          # paths are relative to the server.js
+          solution_api_routes: "./routes/rest_api"
+          solution_request_handler: "./solution/solution_api_handler.js"
+          common_api_routes: "common-utils/routes/common_rest_api"
+          common_request_handler: "common-utils/request_handler"
+
+          verify_user_signature: false
+          disable_verify_user_signature_for_localhost: false
+          skip_verify_user_signature_if_no_key_found: true
+
+          ui_verify_key: "TODO"
+
+          # application admin
+          app_admin:
+              org: PeerOrg1
+              username: AppAdmin
+              secret: pass0
+              private_key: "TODO"
+              public_key: "TODO"
+
+          chaincode:
+              name: "owner-mediated-records"
+              version: "v1"
+              append_hash_to_version: true
+              path: "chaincode"
+              type: "golang"
+              init_function: "init"
+              init_args:
+                  - "owner-mediated-records"
+
+          channels:
+              omr2:
+                  config_path: ""
+                  install_chaincode: false
+                  instantiate_chaincode: false
